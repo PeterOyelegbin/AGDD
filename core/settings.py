@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ["127.0.0.1", "dap-alertgroup.com.ng", "www.dap-alertgroup.com.ng", "ndd.dap-alertgroup.com.ng"]
+ALLOWED_HOSTS = ["127.0.0.1", "dap-alertgroup.com.ng", "www.dap-alertgroup.com.ng", "ndd.dap-alertgroup.com.ng", "alert-direct-debit.onrender.com"]
 
 
 # Application definition
