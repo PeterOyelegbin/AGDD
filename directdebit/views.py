@@ -112,14 +112,11 @@ class FetchMandateView(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request, page, pageSize, *args, **kwargs):
-        # page = 1
-        # pageSize = 20
         serializer = self.get_serializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
             data = serializer.validated_data
-            url = f"{base_url}ndd/v2/api/MandateRequest/FetchMandate?page={page}&pageSize={pageSize}"
-            print(url)
+            url = f"{base_url}ndd/v2/api/MandateRequest/FetchMandate/{page}/{pageSize}"
             response = requests.post(url, headers=headers, json=data)
             if response.status_code == 200:
                 return Response({'status': 'success', 'message': 'Fetched mandate successfully', 'data': response.json()}, status=status.HTTP_200_OK)
@@ -165,4 +162,3 @@ class GetProductView(views.APIView):
         except Exception as e:
             return Response({'status': 'error', 'message': f'Request failed: {e}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
-
