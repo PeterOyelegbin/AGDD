@@ -9,7 +9,7 @@ from utils import base_url, headers, format_date
 
 class CreateMandateView(generics.CreateAPIView):
     serializer_class = CreateMandateSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
     def create(self, request, *args, **kwargs):
@@ -38,7 +38,7 @@ class CreateMandateView(generics.CreateAPIView):
 
 class BalanceEnquiryView(generics.GenericAPIView):
     serializer_class = CreateMandateSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, *args, **kwargs):
@@ -67,7 +67,7 @@ class BalanceEnquiryView(generics.GenericAPIView):
 
 class MandateStatusView(generics.GenericAPIView):
     serializer_class = MandateStatusSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data) 
@@ -87,7 +87,7 @@ class MandateStatusView(generics.GenericAPIView):
 
 class CreateEMandateView(generics.CreateAPIView):
     serializer_class = EMandateSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -109,7 +109,7 @@ class CreateEMandateView(generics.CreateAPIView):
 
 class FetchMandateView(generics.GenericAPIView):
     serializer_class = FetchMandateSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, page, pageSize, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -129,7 +129,7 @@ class FetchMandateView(generics.GenericAPIView):
 
 class UpdateMandateStatusView(generics.CreateAPIView):
     serializer_class = UpdateMandateStatus
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -148,7 +148,7 @@ class UpdateMandateStatusView(generics.CreateAPIView):
         
 
 class GetProductView(views.APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, id, *args, **kwargs):
         url = f"{base_url}ndd/v2/api/Biller/GetProduct/{id}"
